@@ -1,6 +1,6 @@
 import type { Route } from "./+types/home";
-import Hero from "../components/banner/Hero";
-import Card from "../components/card/Card";
+import Hero from "../components/banner/hero";
+import Card from "../components/card/card";
 import { getLogements } from "../data";
 
 export function meta({}: Route.MetaArgs) {
