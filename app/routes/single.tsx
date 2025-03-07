@@ -1,5 +1,7 @@
 import type { Route } from "./+types/single";
 import { getLogement } from "../data";
+import Accordion from "../components/accordion/accordion";
+import Slideshow from "../components/slideshow/slideshow"; // Import the new Slideshow component
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -43,9 +45,55 @@ export default function Single({ loaderData }: Route.ComponentProps) {
   const { single } = loaderData;
 
   return (
-    <div>
-      Single :<h1>{single.title}</h1>
-      <p>{single.description}</p>
-    </div>
+    <>
+      <Slideshow pictures={single.pictures} />
+      <div id="head" className="flex justify-between items-center">
+        <div className="flex flex-col">
+          <hgroup>
+            <h2 className="text-kasa text-4xl">{single.title}</h2>
+            <p>{single.location}</p>
+          </hgroup>
+        </div>
+
+        <div className="flex flex-row items-center">
+          <p className="text-kasa w-20">{single.host.name}</p>
+          <img
+            className="rounded-full h-[64px] w-[64px] object-cover"
+            src={single.host.picture}
+            alt={single.host.name}
+          />
+        </div>
+      </div>
+      <div id="tags" className="flex flex-row mt-4">
+        {single.tags.map((tag, index) => (
+          <div
+            key={index}
+            className={`bg-kasa text-white rounded-sm p-1 ${
+              index < single.tags.length - 1 ? "me-2" : ""
+            }`}
+          >
+            {tag}
+          </div>
+        ))}
+      </div>
+      <div id="accordions" className="mt-4 flex justify-between w-full gap-4">
+        <Accordion
+          elClass="flex-1/2"
+          header="Description"
+          content={<p>{single.description}</p>}
+        />
+        <Accordion
+          elClass="flex-1/2"
+          header="Equipments"
+          content={
+            <ul>
+              {single.equipments.map((equipment, index) => (
+                <li key={index}>{equipment}</li>
+              ))}
+            </ul>
+          }
+        />
+      </div>
+    </>
   );
 }
