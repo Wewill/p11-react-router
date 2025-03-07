@@ -3,6 +3,15 @@ type Logement = {
   title: string;
   description: string;
   cover: string;
+  pictures: string[];
+  host: {
+    name: string;
+    picture: string;
+  };
+  rating: string;
+  location: string;
+  equipments: string[];
+  tags: string[];
 };
 
 export async function getLogements() {
