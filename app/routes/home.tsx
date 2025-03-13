@@ -36,10 +36,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <Hero />
+      <Hero
+        backgroundImage="Image source 1.png"
+        title="Chez vous, partout et ailleurs"
+      />
       <section
         id="cards"
-        className="grid gap-6 grid-cols-3 p-10 bg-stone-100 rounded-xl"
+        className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 p-10 bg-stone-100 rounded-xl"
       >
         {cards.map((card) => (
           <Card

@@ -47,36 +47,61 @@ export default function Single({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <Slideshow pictures={single.pictures} />
-      <div id="head" className="flex justify-between items-center">
-        <div className="flex flex-col">
-          <hgroup>
-            <h2 className="text-kasa text-4xl">{single.title}</h2>
-            <p>{single.location}</p>
-          </hgroup>
-        </div>
-
-        <div className="flex flex-row items-center">
-          <p className="text-kasa w-20">{single.host.name}</p>
-          <img
-            className="rounded-full h-[64px] w-[64px] object-cover"
-            src={single.host.picture}
-            alt={single.host.name}
-          />
-        </div>
-      </div>
-      <div id="tags" className="flex flex-row mt-4">
-        {single.tags.map((tag, index) => (
-          <div
-            key={index}
-            className={`bg-kasa text-white rounded-sm p-1 ${
-              index < single.tags.length - 1 ? "me-2" : ""
-            }`}
-          >
-            {tag}
+      <div
+        id="head"
+        className="flex flex-col md:flex-row justify-between mt-10 gap-5"
+      >
+        <div className="left">
+          <div className="flex flex-col">
+            <hgroup>
+              <h2 className="text-kasa text-xl md:text-4xl mb-2">
+                {single.title}
+              </h2>
+              <p>{single.location}</p>
+            </hgroup>
           </div>
-        ))}
+
+          <div id="tags" className="flex flex-row mt-4">
+            {single.tags.map((tag, index) => (
+              <div
+                key={index}
+                className={`bg-kasa text-white rounded-lg p-1 px-10 text-xs font-semibold ${
+                  index < single.tags.length - 1 ? "me-2" : ""
+                }`}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="right flex md:flex-col items-center justify-between md:justify-end gap-6">
+          <div className="flex flex-row items-center order-last md:order-first">
+            <p className="text-kasa w-20 text-right text-xs md:text-base me-2 ">
+              {single.host.name}
+            </p>
+            <img
+              className="rounded-full h-[32px] w-[32px] md:h-[64px] md:w-[64px] object-cover"
+              src={single.host.picture}
+              alt={single.host.name}
+            />
+          </div>
+          <div id="stars" className="flex flex-row order-first md:order-last">
+            {[...Array(5)].map((_, index) => (
+              <i
+                key={index}
+                className={`fa fa-star md:text-2xl ms-2 ${
+                  index < Number(single.rating) ? "text-kasa" : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-      <div id="accordions" className="mt-4 flex justify-between w-full gap-4">
+
+      <div
+        id="accordions"
+        className="mt-10 flex flex-col md:flex-row justify-between w-full gap-4"
+      >
         <Accordion
           elClass="flex-1/2"
           header="Description"

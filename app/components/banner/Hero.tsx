@@ -1,12 +1,18 @@
-export default function Hero() {
+interface HeroProps {
+  backgroundImage: string;
+  title: string;
+}
+
+export default function Hero({ backgroundImage, title }: HeroProps) {
   return (
-    <section id="hero" className="flex items-center justify-between p-10">
+    <section id="hero" className="mb-10">
       <div
-        className="hero-wrap bg-cover bg-center rounded-lg w-full"
-        style={{ backgroundImage: "url('https://placehold.co/1040x300')" }}
+        className="hero-wrap bg-cover bg-center rounded-lg w-full relative h-[111px] md:h-[225px] flex items-center justify-center"
+        style={{ backgroundImage: `url('${backgroundImage}')` }}
       >
-        <h1 className="text-white text-4xl font-bold p-10">
-          Chez vous, partout et ailleurs
+        <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
+        <h1 className="text-white text-xl md:text-2xl font-bold p-10 text-left md:text-center relative">
+          {title}
         </h1>
       </div>
     </section>
