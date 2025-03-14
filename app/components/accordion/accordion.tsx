@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId } from "react";
 
 interface AccordionProps {
   elClass: string;
@@ -6,35 +6,35 @@ interface AccordionProps {
   content: React.ReactNode;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ elClass, header, content }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+const Accordion = ({ elClass, header, content }: AccordionProps) => {
+  const inputId = useId();
 
   return (
-    <div className={`accordion ${elClass}`}>
-      <div
-        className={`accordion-header bg-kasa text-white ${
-          isOpen ? "rounded-t-lg" : "rounded-lg"
-        } p-2 font-bold flex justify-between`}
-        onClick={toggleAccordion}
+    <div className={`accordion ${elClass} relative`}>
+      <input id={inputId} className="hidden peer" type="checkbox" />
+
+      <label
+        htmlFor={inputId}
+        className="accordion-header bg-kasa text-white p-2 font-bold flex justify-between cursor-pointer transition-all delay-300 peer-checked:delay-0 rounded-lg peer-checked:rounded-b-none"
       >
         <h3>{header}</h3>
-        <button>
-          {isOpen ? (
-            <i className="fas fa-chevron-up text-2xl"></i>
-          ) : (
-            <i className="fas fa-chevron-down text-2xl"></i>
-          )}
-        </button>
+      </label>
+
+      <i className="text-2xl text-white fas fa-chevron-up rotate-0 peer-checked:rotate-180 absolute top-0 end-0 p-2 select-none pointer-events-none cursor-pointer"></i>
+
+      <div
+        ref={(elRef) => {
+          if (elRef) {
+            elRef.style.setProperty(
+              "--scrollHeight",
+              `${elRef.scrollHeight}px`
+            );
+          }
+        }}
+        className="accordion-content bg-stone-100 rounded-b-lg transition-all duration-500 ease-in-out overflow-hidden max-h-0 peer-checked:max-h-(--scrollHeight)"
+      >
+        <div className="content-inner p-6">{content}</div>
       </div>
-      {isOpen && (
-        <div className="accordion-content bg-stone-100 p-6 rounded-b-lg">
-          {content}
-        </div>
-      )}
     </div>
   );
 };
