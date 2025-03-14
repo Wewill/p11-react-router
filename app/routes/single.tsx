@@ -61,7 +61,7 @@ export default function Single({ loaderData }: Route.ComponentProps) {
             </hgroup>
           </div>
 
-          <div id="tags" className="flex flex-row mt-4">
+          <div id="tags" className="flex flex-row mt-4 flex-wrap gap-2">
             {single.tags.map((tag, index) => (
               <div
                 key={index}
