@@ -62,15 +62,15 @@ export default function App() {
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   console.error(error);
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  let message = "Oups!";
+  let details = "Oups! La page que vous demandez n'existe pas.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "404" : "Erreur";
     details =
       error.status === 404
-        ? "The requested page could not be found."
+        ? "Oups! La page que vous demandez n'existe pas."
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;

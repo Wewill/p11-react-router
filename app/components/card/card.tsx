@@ -19,7 +19,7 @@ export default function Card({
           src={imageSrc}
           alt={altText}
         />
-        <div className="absolute bottom-5 left-5 font-bold text-white [text-shadow:_0_2px_10px_rgb(0_0_0_/_20%)]">
+        <div className="absolute bottom-5 left-5 font-bold text-white text-[18px] [text-shadow:_0_2px_10px_rgb(0_0_0_/_20%)]">
           {cardTitle}
         </div>
       </div>

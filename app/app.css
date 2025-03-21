@@ -9,10 +9,8 @@
 html,
 body {
   @apply bg-white;
-  /* @apply bg-white dark:bg-gray-950;
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  } */
+  max-width: 1440px;
+  margin: auto;
 }
 
 body {

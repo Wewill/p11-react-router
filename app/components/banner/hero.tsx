@@ -11,7 +11,7 @@ export default function Hero({ backgroundImage, title }: HeroProps) {
         style={{ backgroundImage: `url('${backgroundImage}')` }}
       >
         <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
-        <h1 className="text-white text-xl md:text-2xl font-bold p-10 text-left md:text-center relative">
+        <h1 className="text-white text-xl sm:text-3xl md:text-[48px] font-bold p-10 text-left md:text-center relative">
           {title}
         </h1>
       </div>

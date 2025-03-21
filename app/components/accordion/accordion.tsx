@@ -20,7 +20,7 @@ const Accordion = ({ elClass, header, content }: AccordionProps) => {
         <h3>{header}</h3>
       </label>
 
-      <i className="text-2xl text-white fas fa-chevron-up rotate-0 peer-checked:rotate-180 absolute top-0 end-0 p-2 select-none pointer-events-none cursor-pointer"></i>
+      <i className="text-2xl text-white fas fa-chevron-up transition-all  rotate-0 peer-checked:rotate-180 absolute top-0 end-0 p-2 select-none pointer-events-none cursor-pointer"></i>
 
       <div
         ref={(elRef) => {
